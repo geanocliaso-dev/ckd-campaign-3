@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronic Kidney Disease · Campaign</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eef3f7;
+            color: #1a3a4e;
+            line-height: 1.5;
+        }
+
+        .wrapper {
+            width: 100%;
+            background: white;
+        }
+
+        .header {
+            background: #003b5c;
+            color: white;
+            padding: 40px 5%;
+        }
+
+        .header h1 { font-size: 3rem; margin-bottom: 10px; }
+        .header .tagline { font-size: 1.2rem; margin-bottom: 20px; opacity: 0.9; }
+
+        .byline {
+            background: rgba(255,255,255,0.15);
+            padding: 12px 25px;
+            border-radius: 40px;
+            display: inline-block;
+        }
+
+        .content { padding: 40px 5%; max-width: 1400px; margin: 0 auto; }
+
+        /* TWO COLUMN - USING FLEX WITH PROPER WIDTH */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .col {
+            flex: 1 1 calc(50% - 15px);
+            min-width: 300px;
+        }
+
+        .card {
+            background: #f8fbfe;
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid #d4e2f0;
+            height: 100%;
+        }
+
+        .card h2 { 
+            font-size: 2rem; 
+            color: #003b5c; 
+            margin-bottom: 20px; 
+            border-bottom: 3px solid #00a1b0; 
+            padding-bottom: 10px; 
+        }
+
+        .card p { font-size: 1.1rem; margin-bottom: 20px; }
+
+        .badge {
+            background: #00a1b0;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        /* STATS - FLEX ROW */
+        .stats {
+            background: #003b5c;
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+            margin: 40px 0;
+            color: white;
+        }
+
+        .stat-box { text-align: center; flex: 1 1 150px; }
+        .stat-number { font-size: 3rem; font-weight: bold; }
+        .stat-label { font-size: 1.1rem; }
+
+        /* STAGES TABLE - SIMPLE */
+        .stage-section {
+            background: #f8fbfe;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        .stage-section h2 { 
+            font-size: 2rem; 
+            color: #003b5c; 
+            margin-bottom: 20px; 
+            border-bottom: 3px solid #00a1b0; 
+            padding-bottom: 10px; 
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            background: white; 
+            border-radius: 10px; 
+        }
+
+        th { 
+            background: #003b5c; 
+            color: white; 
+            padding: 12px; 
+            text-align: left; 
+        }
+
+        td { 
+            padding: 12px; 
+            border-bottom: 1px solid #ddd; 
+        }
+
+        .stage-badge {
+            background: #00a1b0;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+
+        /* GRID FOR CAUSES */
+        .grid-3 {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .grid-item {
+            flex: 1 1 calc(33.333% - 17px);
+            min-width: 250px;
+            background: #f8fbfe;
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid #d4e2f0;
+        }
+
+        .grid-item h3 { font-size: 1.4rem; color: #003b5c; margin-bottom: 15px; }
+        .grid-item ul { margin-left: 20px; }
+        .grid-item li { margin-bottom: 8px; }
+
+        /* PREVENTION TIPS - FIXED GRID */
+        .prevention-title {
+            font-size: 2.2rem;
+            color: #003b5c;
+            margin: 40px 0 20px 0;
+            border-bottom: 3px solid #00a1b0;
+            padding-bottom: 10px;
+        }
+
+        .prevention-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0 40px 0;
+        }
+
+        .prevention-item {
+            flex: 1 1 calc(33.333% - 14px);
+            min-width: 200px;
+            background: white;
+            border-radius: 16px;
+            padding: 25px 15px;
+            text-align: center;
+            border: 1px solid #d4e2f0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+        }
+
+        .prevention-item i { 
+            font-size: 2.5rem; 
+            color: #003b5c; 
+            margin-bottom: 15px; 
+            display: block;
+        }
+
+        .prevention-item strong { 
+            font-size: 1.3rem; 
+            color: #003b5c; 
+            display: block; 
+            margin-bottom: 8px; 
+        }
+
+        .prevention-item p { 
+            color: #4d6a80; 
+            font-size: 0.95rem; 
+            margin: 0; 
+        }
+
+        /* SYMPTOMS */
+        .symptoms-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 20px 0;
+        }
+
+        .symptoms-col {
+            flex: 1 1 calc(50% - 13px);
+            min-width: 280px;
+            background: #f8fbfe;
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .symptoms-col ul { list-style: none; }
+        .symptoms-col li { margin-bottom: 10px; font-size: 1.1rem; }
+        .symptoms-col li i { color: #00a1b0; margin-right: 10px; font-size: 0.8rem; }
+
+        /* HEALTH CHECK */
+        .check-section {
+            background: #f0f7fc;
+            border-radius: 30px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 2px dashed #00a1b0;
+            text-align: center;
+        }
+
+        .check-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .check-box {
+            flex: 1 1 150px;
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+        }
+
+        .check-number {
+            background: #003b5c;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+        }
+
+        /* QUOTE */
+        .quote {
+            background: #e6f3ff;
+            border-radius: 30px;
+            padding: 50px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .quote p { font-size: 2rem; color: #003b5c; margin-bottom: 15px; }
+
+        /* FOOTER */
+        .footer {
+            background: #003b5c;
+            color: white;
+            padding: 30px 5%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            border-top: 4px solid #00a1b0;
+        }
+
+        /* MOBILE FIX */
+        @media (max-width: 700px) {
+            .prevention-item { flex: 1 1 100%; }
+            .col { flex: 1 1 100%; }
+            .grid-item { flex: 1 1 100%; }
+            .symptoms-col { flex: 1 1 100%; }
+            .header h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>Chronic Kidney Disease</h1>
+            <div class="tagline">The Kidney Path · Understand, prevent, manage</div>
+            <div class="byline">
+                <i class="fas fa-user-graduate"></i> <strong>submitted by: Gean Hurley M. Ocliaso</strong>
+                <i class="fas fa-user-nurse" style="margin-left:10px;"></i> <strong>submitted to Ms. Rolyn Pagosa</strong>
+            </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content">
+            <!-- HERO -->
+            <div style="background:#e6f3ff; border-radius:20px; padding:40px; margin-bottom:40px; text-align:center;">
+                <h2 style="font-size:2.5rem; color:#003b5c; margin-bottom:15px;">Your Amazing Kidneys</h2>
+                <p style="font-size:1.3rem;"><i class="fas fa-heart" style="color:#ff6b6b;"></i> Filter 120-150 quarts of blood daily <i class="fas fa-heart" style="color:#ff6b6b;"></i></p>
+            </div>
+
+            <!-- TWO COLUMN -->
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <h2><i class="fas fa-kidneys"></i> What is CKD?</h2>
+                        <p>Chronic Kidney Disease (CKD) means your kidneys are damaged and can't filter blood the way they should. This damage happens slowly over months or years. Waste builds up in your body and can cause serious health problems.</p>
+                        <p><span class="badge"><i class="fas fa-exclamation-circle"></i> Silent disease</span> – You may not feel symptoms until kidneys are close to failing.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <h2><i class="fas fa-heartbeat"></i> How kidneys work</h2>
+                        <p>Your two kidneys, each the size of a fist, filter 120-150 quarts of blood daily. They remove waste and extra water to make urine. They also control blood pressure, keep bones healthy, and make red blood cells.</p>
+                        <p><span class="badge"><i class="fas fa-droplet"></i> 120-150 quarts/day</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STATS -->
+            <div class="stats">
+                <div class="stat-box"><div class="stat-number">1 in 7</div><div class="stat-label">adults may have CKD</div></div>
+                <div class="stat-box"><div class="stat-number">90%</div><div class="stat-label">don't know they have it</div></div>
+                <div class="stat-box"><div class="stat-number">1 in 3</div><div class="stat-label">with diabetes has CKD</div></div>
+            </div>
+
+            <!-- STAGES -->
+            <div class="stage-section">
+                <h2><i class="fas fa-chart-line"></i> Stages of CKD</h2>
+                <p style="margin-bottom:15px;">Based on eGFR (estimated glomerular filtration rate):</p>
+                <table>
+                    <tr><th>Stage</th><th>eGFR</th><th>Description</th></tr>
+                    <tr><td>Stage 1</td><td><span class="stage-badge">≥90</span></td><td>Kidneys function well, but signs of mild damage</td></tr>
+                    <tr><td>Stage 2</td><td><span class="stage-badge">60-89</span></td><td>Mild loss of kidney function</td></tr>
+                    <tr><td>Stage 3</td><td><span class="stage-badge">30-59</span></td><td>Moderate loss. Symptoms may appear</td></tr>
+                    <tr><td>Stage 4</td><td><span class="stage-badge">15-29</span></td><td>Severe loss. Prepare for dialysis/transplant</td></tr>
+                    <tr><td>Stage 5</td><td><span class="stage-badge"><15</span></td><td>Kidney failure. Dialysis or transplant needed</td></tr>
+                </table>
+            </div>
+
+            <!-- CAUSES -->
+            <h2 style="font-size:2rem; color:#003b5c; margin:40px 0 20px 0;"><i class="fas fa-exclamation-triangle"></i> Causes & Risk Factors</h2>
+            <div class="grid-3">
+                <div class="grid-item"><h3><i class="fas fa-droplet"></i> Main causes</h3><ul><li>Diabetes (38%)</li><li>High blood pressure (26%)</li><li>Glomerulonephritis</li><li>Polycystic kidney disease</li></ul></div>
+                <div class="grid-item"><h3><i class="fas fa-heartbeat"></i> Risk factors</h3><ul><li>Family history</li><li>Age 60+</li><li>Heart disease</li><li>Smoking, NSAIDs</li></ul></div>
+                <div class="grid-item"><h3><i class="fas fa-users"></i> High-risk groups</h3><ul><li>African American</li><li>Hispanic</li><li>Asian, Native American</li><li>Autoimmune diseases</li></ul></div>
+            </div>
+
+            <!-- PREVENTION TIPS - FIXED GRID -->
+            <h2 class="prevention-title"><i class="fas fa-shield-heart"></i> Prevention Tips</h2>
+            <div class="prevention-grid">
+                <div class="prevention-item"><i class="fas fa-bottle-water"></i><strong>Stay hydrated</strong><p>6-8 glasses daily</p></div>
+                <div class="prevention-item"><i class="fas fa-heart"></i><strong>Control BP</strong><p>Keep below 130/80</p></div>
+                <div class="prevention-item"><i class="fas fa-carrot"></i><strong>Healthy diet</strong><p>Less salt, fresh foods</p></div>
+                <div class="prevention-item"><i class="fas fa-person-walking"></i><strong>Exercise</strong><p>150 min/week</p></div>
+                <div class="prevention-item"><i class="fas fa-ban"></i><strong>Avoid NSAIDs</strong><p>Limit ibuprofen, naproxen</p></div>
+                <div class="prevention-item"><i class="fas fa-stethoscope"></i><strong>Regular check-ups</strong><p>If diabetic or high BP</p></div>
+            </div>
+
+            <!-- SYMPTOMS -->
+            <h2 style="font-size:2rem; color:#003b5c; margin:40px 0 20px 0;"><i class="fas fa-flag"></i> Signs & Symptoms</h2>
+            <p style="margin-bottom:15px;">Early CKD often has no symptoms. As it progresses:</p>
+            <div class="symptoms-row">
+                <div class="symptoms-col"><ul><li><i class="fas fa-circle"></i> Fatigue, trouble concentrating</li><li><i class="fas fa-circle"></i> Swollen feet/ankles</li><li><i class="fas fa-circle"></i> Puffiness around eyes</li><li><i class="fas fa-circle"></i> Dry, itchy skin</li><li><i class="fas fa-circle"></i> Muscle cramps</li></ul></div>
+                <div class="symptoms-col"><ul><li><i class="fas fa-circle"></i> Urinating more at night</li><li><i class="fas fa-circle"></i> Nausea, loss of appetite</li><li><i class="fas fa-circle"></i> Shortness of breath</li><li><i class="fas fa-circle"></i> Metallic taste</li><li><i class="fas fa-circle"></i> Trouble sleeping</li></ul></div>
+            </div>
+
+            <!-- HEALTH CHECK -->
+            <div class="check-section">
+                <h2 style="font-size:2rem; color:#003b5c;"><i class="fas fa-stethoscope"></i> Kidney Health Check</h2>
+                <div class="check-grid">
+                    <div class="check-box"><div class="check-number">1</div><h4>Blood test</h4><p>eGFR</p></div>
+                    <div class="check-box"><div class="check-number">2</div><h4>Urine test</h4><p>ACR</p></div>
+                    <div class="check-box"><div class="check-number">3</div><h4>Blood pressure</h4><p>Check for hypertension</p></div>
+                </div>
+            </div>
+
+            <!-- QUOTE -->
+            <div class="quote">
+                <p>"Purge, but stay, and give yourself promises to heal for a new minute."</p>
+                <small style="font-size:1.1rem;"><i class="fas fa-heart" style="color:#ff6b6b;"></i> Kidney health is total health <i class="fas fa-heart" style="color:#ff6b6b;"></i></small>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div><i class="fas fa-kidneys"></i> CKD Awareness Campaign</div>
+            <div><i class="fas fa-heart"></i> #TheKidneyPath <i class="fas fa-heart"></i> #CKDawareness</div>
+        </div>
+    </div>
+</body>
+</html>
